@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import CardList from "./components/CardList";
 import { SearchBox } from "./components/SearchBox";
-import { Button } from "semantic-ui-react";
 import "./App.css";
+import { MDBContainer } from "mdb-react-ui-kit";
 
 class App extends Component {
   constructor() {
@@ -21,14 +21,14 @@ class App extends Component {
     this.handleFetch = this.handleFetch.bind(this);
   }
 
-  handleClickNext(){
-    this.setState({url:this.state.next})
+  handleClickNext() {
+    this.setState({ url: this.state.next });
     console.log("1");
     this.handleFetch();
   }
 
-  handleClickPrev(){
-    this.setState({url:this.state.prev})
+  handleClickPrev() {
+    this.setState({ url: this.state.prev });
     console.log("1");
     this.handleFetch();
   }
@@ -37,17 +37,17 @@ class App extends Component {
     this.handleFetch();
   }
 
- handleFetch =()=>{
-  fetch(this.state.url)
-  .then((response) => response.json())
-  .then((data) =>
-    this.setState({
-      pokemons: data.results,
-      next: data.next,
-      prev: data.previous,
-    })
-  );
- }
+  handleFetch = () => {
+    fetch(this.state.url)
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          pokemons: data.results,
+          next: data.next,
+          prev: data.previous,
+        })
+      );
+  };
 
   handleChange = (e) => {
     this.setState({ search: e.target.value });
@@ -60,16 +60,32 @@ class App extends Component {
     );
 
     return (
-      <div className="App">
+      <MDBContainer>
         <h1>Pokedox</h1>
         <SearchBox
           placeholder="Search Pokemon"
           handleChange={this.handleChange}
         />
         <CardList pokemons={fileteredPokemons}></CardList>
-        {this.state.prev !== null && <Button onClick={this.handleClickPrev} color="violet">PREV</Button>}
-        {this.state.next !== undefined && <Button onClick={this.handleClickNext} color="violet">NEXT</Button>}
-      </div>
+        {this.state.prev !== null && (
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2" type="button">
+              Prev
+            </button>
+          </div>
+        )}
+        {this.state.next !== undefined && (
+          <button
+            onClick={this.handleClickNext}
+            type="button"
+            class="btn btn-primary"
+            className="btn btn-primary"
+            type="button"
+          >
+            Next
+          </button>
+        )}
+      </MDBContainer>
     );
   }
 }

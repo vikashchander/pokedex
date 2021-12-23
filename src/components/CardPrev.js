@@ -1,6 +1,5 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
-// import PokemonDetails from "./PokemonDetails";
+
 class CardPrev extends React.Component {
   constructor(props) {
     super(props);
@@ -14,29 +13,29 @@ class CardPrev extends React.Component {
     fetch(this.state.urls)
       .then((res) => res.json())
       .then((data) => {
-        this.setState({data});
+        this.setState({ data });
       });
-
   }
   render() {
     return (
-      <Card>
-        {
-          this.state.data.id && 
-          <Image
-          size='small' rounded
-          wrapped ui={false}
-          src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`}
-          
-        />
-         }        
-        <Card.Content>
-          <Card.Header>
-            {this.props.pokemon.name[0].toUpperCase() +
-              this.props.pokemon.name.slice(1)}
-          </Card.Header>
-        </Card.Content>
-      </Card>
+      <div class="row row-cols-2 row-cols-md-4 g-2">
+        <div class="card h-100">
+          <img
+            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`}
+            class="card-img-top"
+            alt="Hollywood Sign on The Hill"
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              {this.props.pokemon.name[0].toUpperCase() +
+                this.props.pokemon.name.slice(1)}
+            </h5>
+            <p class="card-text">
+            {"#" + this.state.data.id}
+            </p>
+          </div>
+        </div>
+      </div>
     );
   }
 }

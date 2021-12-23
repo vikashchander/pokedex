@@ -1,6 +1,4 @@
 import React from "react";
-import { Button, Modal } from "semantic-ui-react";
-
 function PokemonDetails() {
   const [open, setOpen] = React.useState(false);
 

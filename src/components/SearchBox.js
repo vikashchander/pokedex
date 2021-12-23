@@ -1,6 +1,15 @@
 import React from "react";
-import { Input } from "semantic-ui-react";
 
 export const SearchBox = ({ placeholder, handleChange }) => (
-  <Input focus placeholder={placeholder} onChange={handleChange} />
+  <div class="form-outline">
+    <input
+      onChange={handleChange}
+      type="text"
+      id="typeText"
+      class="form-control"
+    />
+    <label class="form-label" for="typeText">
+      {placeholder}
+    </label>
+  </div>
 );
