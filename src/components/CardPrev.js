@@ -18,22 +18,18 @@ class CardPrev extends React.Component {
   }
   render() {
     return (
-      <div class="row row-cols-2 row-cols-md-4 g-2">
-        <div class="card h-100">
-          <img
-            src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`}
-            class="card-img-top"
-            alt="Hollywood Sign on The Hill"
-          />
-          <div class="card-body">
-            <h5 class="card-title">
-              {this.props.pokemon.name[0].toUpperCase() +
-                this.props.pokemon.name.slice(1)}
-            </h5>
-            <p class="card-text">
-            {"#" + this.state.data.id}
-            </p>
-          </div>
+      <div class="card h-100">
+        <img
+          src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`}
+          class="card-img-top"
+          alt="Hollywood Sign on The Hill"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            {this.props.pokemon.name[0].toUpperCase() +
+              this.props.pokemon.name.slice(1)}
+          </h5>
+          <p class="card-text">{"#" + this.state.data.id}</p>
         </div>
       </div>
     );

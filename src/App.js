@@ -60,19 +60,26 @@ class App extends Component {
     );
 
     return (
-      <MDBContainer>
+      <div>
         <h1>Pokedox</h1>
         <SearchBox
           placeholder="Search Pokemon"
           handleChange={this.handleChange}
         />
-        <CardList pokemons={fileteredPokemons}></CardList>
+        <div class="container-lg">
+          <CardList pokemons={fileteredPokemons}></CardList>
+        </div>
+
         {this.state.prev !== null && (
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-primary me-md-2" type="button">
-              Prev
-            </button>
-          </div>
+          <button
+            onClick={this.handleClickPrev}
+            type="button"
+            class="btn btn-primary"
+            className="btn btn-primary"
+            type="button"
+          >
+            Prev
+          </button>
         )}
         {this.state.next !== undefined && (
           <button
@@ -85,7 +92,7 @@ class App extends Component {
             Next
           </button>
         )}
-      </MDBContainer>
+      </div>
     );
   }
 }
