@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CardList from "./components/CardList";
 import { SearchBox } from "./components/SearchBox";
 import "./App.css";
-import { MDBContainer } from "mdb-react-ui-kit";
 
 class App extends Component {
   constructor() {
@@ -23,7 +22,6 @@ class App extends Component {
 
   handleClickNext() {
     this.setState({ url: this.state.next });
-    console.log("1");
     this.handleFetch();
   }
 
@@ -59,39 +57,74 @@ class App extends Component {
       pokemon.name.toLowerCase().includes(search.toLowerCase())
     );
 
+    let checker1;
+    let checker2;
+    if (this.state.prev !== null) {
+      checker1 = (
+        <button
+          onClick={this.handleClickPrev}
+          type="button"
+          className="btn btn-primary m-1"
+          type="button"
+        >
+          Prev
+        </button>
+      );
+    } else {
+      checker1 = (
+        <button
+          onClick={this.handleClickPrev}
+          type="button"
+          className="btn btn-primary m-1"
+          type="button"
+          disabled
+        >
+          Prev
+        </button>
+      );
+    }
+
+    if (this.state.next !== null) {
+      checker2 = (
+        <button
+          onClick={this.handleClickNext}
+          type="button"
+          className="btn btn-primary m-1"
+          type="button"
+        >
+          Next
+        </button>
+      );
+    } else {
+      checker2 = (
+        <button
+          onClick={this.handleClickNext}
+          type="button"
+          className="btn btn-primary m-1"
+          type="button"
+          disabled
+        >
+          Next
+        </button>
+      );
+    }
     return (
-      <div>
-        <h1>Pokedox</h1>
-        <SearchBox
-          placeholder="Search Pokemon"
-          handleChange={this.handleChange}
-        />
-        <div class="container-lg">
+      <div className="container">
+        <div className="">
+          <h1>Pokedox</h1>
+          <SearchBox placeholder="Search" handleChange={this.handleChange} />
+        </div>
+
+        <div className="container-lg">
           <CardList pokemons={fileteredPokemons}></CardList>
         </div>
 
-        {this.state.prev !== null && (
-          <button
-            onClick={this.handleClickPrev}
-            type="button"
-            class="btn btn-primary"
-            className="btn btn-primary"
-            type="button"
-          >
-            Prev
-          </button>
-        )}
-        {this.state.next !== undefined && (
-          <button
-            onClick={this.handleClickNext}
-            type="button"
-            class="btn btn-primary"
-            className="btn btn-primary"
-            type="button"
-          >
-            Next
-          </button>
-        )}
+        <div className="container">
+          <div className="row p-2">
+            <div className="col-md-auto ">{checker1}</div>
+            <div className="col-md-auto">{checker2}</div>
+          </div>
+        </div>
       </div>
     );
   }
