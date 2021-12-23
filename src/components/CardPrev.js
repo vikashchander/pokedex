@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Image } from "semantic-ui-react";
-
+// import PokemonDetails from "./PokemonDetails";
 class CardPrev extends React.Component {
   constructor(props) {
     super(props);
