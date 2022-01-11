@@ -6,6 +6,8 @@ class CardPrev extends React.Component {
     this.state = {
       urls: this.props.pokemon.url,
       data: {},
+      types: [],
+      id: null,
     };
   }
 
@@ -14,9 +16,15 @@ class CardPrev extends React.Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({ data });
+        this.setState({ types: data.types });
+        this.setState({ id: data.id });
       });
   }
   render() {
+    const title = <p className="card-text">{"# " + this.state.id}</p>;
+    const listItems = this.state.types.map((data) => (
+      <p key={data.slot}>{data.type.name}</p>
+    ));
     return (
       <div className="card h-100 border border-primary">
         <img
@@ -29,7 +37,8 @@ class CardPrev extends React.Component {
             {this.props.pokemon.name[0].toUpperCase() +
               this.props.pokemon.name.slice(1)}
           </h5>
-          <p className="card-text">{"#" + this.state.data.id}</p>
+          {title}
+          {listItems}
         </div>
       </div>
     );
