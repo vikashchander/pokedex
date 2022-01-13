@@ -28,7 +28,7 @@ class CardPrev extends React.Component {
     return (
       <div className="card h-100 border border-primary">
         <img
-          src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`}
+          src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${this.state.data.id}.svg`.replace(/ /g, "")}
           className="card-img-top"
           alt="Hollywood Sign on The Hill"
         />
