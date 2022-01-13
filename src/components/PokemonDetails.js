@@ -1,23 +1,30 @@
-import React from "react";
-function PokemonDetails() {
-  const [open, setOpen] = React.useState(false);
+import React, { Component } from "react";
+import {
+  MDBContainer,
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter,
+} from "mdbreact";
 
-  return (
-    <Modal
-      closeIcon
-      open={open}
-      trigger={<Button>Show Modal</Button>}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-    >
-      <Modal.Content>
-        <p>
-          Your inbox is getting full, would you like us to enable automatic
-          archiving of old messages?
-        </p>
-      </Modal.Content>
-    </Modal>
-  );
+class PokemonDetails extends Component {
+  constructor(props) {
+    super(props);
+  }
+  state = {
+    modal: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
+
+  render() {
+    return <div></div>;
+  }
 }
 
 export default PokemonDetails;

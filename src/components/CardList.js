@@ -2,6 +2,10 @@ import React from "react";
 import CardPrev from "./CardPrev";
 
 class CardList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="container">
@@ -9,7 +13,7 @@ class CardList extends React.Component {
           {this.props.pokemons.map((pokemon) => {
             return (
               <div className="col-md-3 p-1" key={pokemon.name}>
-                <CardPrev key={pokemon.name} pokemon={pokemon}></CardPrev>
+                <CardPrev key={pokemon.name}  pokemon={pokemon}></CardPrev>
               </div>
             );
           })}
