@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import CardList from "./components/CardList";
 import { SearchBox } from "./components/SearchBox";
 import "./App.css";
+import {
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
+  MDBDropdownLink,
+} from "mdb-react-ui-kit";
 
 class App extends Component {
   constructor() {
@@ -13,6 +20,7 @@ class App extends Component {
       next: "",
       prev: "",
       url: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20",
+      filters: [],
     };
 
     this.handleClickPrev = this.handleClickPrev.bind(this);
@@ -110,11 +118,31 @@ class App extends Component {
     }
     return (
       <div className="container">
-        <div className="">
-          <h1>Pokedox</h1>
-          <SearchBox placeholder="Search" handleChange={this.handleChange} />
+        <h1>Pokedox</h1>
+        <div className="row">
+          <div className="col-md-10 col-sm-2 p-1">
+            <SearchBox placeholder="Search" handleChange={this.handleChange} />
+          </div>
+          <div className="col-md-2 col-sm-3 p-1">
+            <MDBDropdown>
+              <MDBDropdownToggle>Filter </MDBDropdownToggle>
+              <MDBDropdownMenu>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>Grass</MDBDropdownLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>Posion</MDBDropdownLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>Fire</MDBDropdownLink>
+                </MDBDropdownItem>
+                <MDBDropdownItem>
+                  <MDBDropdownLink>water</MDBDropdownLink>
+                </MDBDropdownItem>
+              </MDBDropdownMenu>
+            </MDBDropdown>
+          </div>
         </div>
-
         <div className="container-lg">
           <CardList pokemons={fileteredPokemons}></CardList>
         </div>

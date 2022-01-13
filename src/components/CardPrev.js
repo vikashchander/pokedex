@@ -1,5 +1,6 @@
 import React from "react";
 import PokemonDetails from "./PokemonDetails";
+
 import { MDBModal, MDBModalBody, MDBModalHeader } from "mdbreact";
 class CardPrev extends React.Component {
   constructor(props) {
@@ -16,11 +17,13 @@ class CardPrev extends React.Component {
   }
 
   handleClick() {
-    this.setState({
-      modal: !this.state.modal,
-    });
+    this.setState((prevState) => ({
+      modal: !prevState.modal,
+    }));
   }
-
+  handleAdd = () => {
+    this.props.parentCallback(this.state.types);
+  };
   componentDidMount() {
     fetch(this.state.urls)
       .then((res) => res.json())
@@ -31,22 +34,38 @@ class CardPrev extends React.Component {
         this.setState({ stats: data.stats });
       });
   }
+
   render() {
     const title = <p className="card-text">{"# " + this.state.id}</p>;
     const listItems = this.state.types.map((data) => (
-      <p key={data.slot}>{data.type.name}</p>
+      <span key={data.slot} className="w-3 h5 badge p-1 m-2 rounded-pill bg-primary">
+        {data.type.name}
+      </span>
     ));
 
     const statsItems = this.state.stats.map((data) => (
       <div key={data.stat.name}>
-        <p>{data.stat.name.toUpperCase()}</p>
-        <p>{data.base_stat}</p>
+        <div className="m-2 p-3 row">
+          <p>{data.stat.name.toUpperCase()}</p>
+          {/* <p>{data.base_stat}</p> */}
+          <div className="progress">
+            <div
+              className="progress-bar bg-info"
+              role="progressbar"
+              style={{ width: "50%" }}
+              aria-valuenow={data.base_stat}
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </div>
       </div>
     ));
     return (
       <div
         onClick={this.handleClick}
         className="card h-100 border border-primary"
+        ref={this.elementRef}
       >
         <MDBModal isOpen={this.state.modal}>
           <MDBModalHeader>

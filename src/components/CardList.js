@@ -13,7 +13,7 @@ class CardList extends React.Component {
           {this.props.pokemons.map((pokemon) => {
             return (
               <div className="col-md-3 p-1" key={pokemon.name}>
-                <CardPrev key={pokemon.name}  pokemon={pokemon}></CardPrev>
+                <CardPrev key={pokemon.name}  pokemon={pokemon} parentCallback = {this.props.parentCallback}></CardPrev>
               </div>
             );
           })}
